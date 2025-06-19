@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Developers: Ayush Patel & Nathan Ehnes
+ * Project Name: Samurai Skrimish
+ * Submission: ICS4U 
+ * Teacher: Mr. Theodoropoulos
+ * Date: June 19, 2025
+*/
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
