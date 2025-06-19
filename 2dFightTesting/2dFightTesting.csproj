@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F1DBAD87-081D-4A3B-BD8F-3CF5E79CEBB2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>_2dFightTesting</RootNamespace>
+    <AssemblyName>2dFightTesting</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BlueSamurai.cs" />
+    <Compile Include="Character.cs" />
+    <Compile Include="Attack.cs" />
+    <Compile Include="DemoScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemoScreen.Designer.cs">
+      <DependentUpon>DemoScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GameScreen.Designer.cs">
+      <DependentUpon>GameScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LeaderBoardScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LeaderBoardScreen.Designer.cs">
+      <DependentUpon>LeaderBoardScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MenuScreen.Designer.cs">
+      <DependentUpon>MenuScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NameInputScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NameInputScreen.Designer.cs">
+      <DependentUpon>NameInputScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedSamurai.cs" />
+    <Compile Include="WinScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinScreen.Designer.cs">
+      <DependentUpon>WinScreen.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DemoScreen.resx">
+      <DependentUpon>DemoScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameScreen.resx">
+      <DependentUpon>GameScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeaderBoardScreen.resx">
+      <DependentUpon>LeaderBoardScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuScreen.resx">
+      <DependentUpon>MenuScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NameInputScreen.resx">
+      <DependentUpon>NameInputScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="WinScreen.resx">
+      <DependentUpon>WinScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ATTACK1-ezgif.com-crop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IDLE_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IDLE_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IDLE_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IDLE_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IDLE_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IDLE_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trimmed8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trimmed7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trimmed6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trimmed5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trimmed4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trimmed3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trimmed2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trimmed1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fall1.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fall2.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack1_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack1_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack1_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack1_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack1_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack1_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idle1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idle2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idle3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idle4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idle5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idle6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idle7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idle8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\run1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\run2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\run3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\run4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\run5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\run6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\run7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\run8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack2_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack2_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack2_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack2_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack2_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack2_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jump2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fall1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fall2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resized_japan.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\damaged1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\damaged2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\damaged3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\damaged4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_idle3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_idle2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_idle4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_idle1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_run8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_run7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_run6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_run5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_run4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_run3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_run2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_run1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_attack1_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_attack1_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_attack1_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_attack1_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_attack2_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_attack2_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_attack2_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_attack2_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_fall2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_fall1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_jump2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_jump1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_damaged4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_damaged3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_damaged1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_damaged2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_damaged21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\damaged21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\light_air4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\light_air3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\light_air2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\light_air1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_light_air_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_light_air_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_light_air_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_light_air_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backgroundMusic.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\chooseyourcharacter-285707.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\sword-slash-with-metal-shield-impact-185433.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\sword-blade-slicing-flesh-352708.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\sword-slash-and-swing-185432.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\air-84482.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\gameOver.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\fightingSound.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\mainScreenBgSound.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\player-2-wins.wav" />
+    <None Include="Resources\player-1-wins.wav" />
+    <Content Include="Resources\WinRecords.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
