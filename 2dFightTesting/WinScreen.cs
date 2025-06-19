@@ -33,19 +33,19 @@ namespace _2dFightTesting
             IncrementWinner(winnerName, _lastScreen);
         }
 
-        private void IncrementWinner(String _winnerName,String _lastScreen)
+        private void IncrementWinner(String _winnerName, String _lastScreen)
         {
             LoadStats();
 
             Player winnerWinner = CheckListForWinner(_winnerName);
 
-            // SortPlayersList(); add in later
-
             if (_lastScreen == "gameScreen")
             {
                 AddWinPoint(winnerWinner, _winnerName);
             }
-        
+
+            SortPlayersList();
+
             OverwriteXml();
         }
 
@@ -114,23 +114,10 @@ namespace _2dFightTesting
 
         private void SortPlayersList()
         {
-            // DO LATER
-
-            int temp;
-            for (int i = 0; i < size - 1; i++)
-            {
-                for (int j = 0; j < size - i - 1; j++)
-                {
-                    if (array[j] > array[j + 1])
-                    {
-                        temp = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = temp;
-                    }
-                }
-            }
-
+            players = players.OrderByDescending(p => int.Parse(p.wins)).ToList();
         }
+
+
         private void OverwriteXml()
         {
             XmlWriter writer = XmlWriter.Create("Resources/WinRecords.xml", null);
