@@ -30,6 +30,7 @@
         {
             this.outputLabel = new System.Windows.Forms.Label();
             this.returnButton = new System.Windows.Forms.Button();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // outputLabel
@@ -61,10 +62,22 @@
             this.returnButton.UseVisualStyleBackColor = false;
             this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
             // 
+            // titleLabel
+            // 
+            this.titleLabel.Font = new System.Drawing.Font("Palatino Linotype", 24F);
+            this.titleLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.titleLabel.Location = new System.Drawing.Point(0, 9);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(747, 44);
+            this.titleLabel.TabIndex = 27;
+            this.titleLabel.Text = "Leaderboard:";
+            this.titleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // LeaderBoardScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.returnButton);
             this.Controls.Add(this.outputLabel);
             this.Name = "LeaderBoardScreen";
@@ -77,5 +90,6 @@
 
         private System.Windows.Forms.Label outputLabel;
         private System.Windows.Forms.Button returnButton;
+        private System.Windows.Forms.Label titleLabel;
     }
 }
