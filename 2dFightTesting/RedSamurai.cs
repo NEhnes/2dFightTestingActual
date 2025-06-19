@@ -19,7 +19,7 @@ namespace _2dFightTesting
             // subclass specific details below
             Name = "Red Samurai";
 
-            Damage = 0;
+            Health = 0;
 
             IdleFrames = new Image[8] { Properties.Resources.idle1, Properties.Resources.idle2 , Properties.Resources.idle3 ,
                                             Properties.Resources.idle4, Properties.Resources.idle5, Properties.Resources.idle6,

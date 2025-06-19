@@ -51,11 +51,11 @@ namespace _2dFightTesting
             get { return _name; }
             set { _name = value; }
         }
-        private int _damage;
-        public int Damage
+        private int _health;
+        public int Health
         {
-            get { return _damage; }
-            set { _damage = value; }
+            get { return _health; }
+            set { _health = value; }
         }
         public float X
         {
@@ -393,7 +393,7 @@ namespace _2dFightTesting
             return new Rectangle((int)x, (int)y, 64, 64);
         }
 
-        // region where an attack is active and can damage opponent
+        // region where an attack is active and can Health opponent
         public Rectangle GetHitBox() //uses Attack Data
         {
             // return an empty rectangle if animation is not in active frames

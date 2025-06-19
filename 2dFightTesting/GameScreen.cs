@@ -82,14 +82,14 @@ namespace _2dFightTesting
 
         private void CheckRoundOver()
         {
-            if (player1.Damage >= maxDamage)
+            if (player1.Health >= maxDamage)
             {
                 //Player 2 wins the round
                 player2RoundWins += 1;
                 roundWinner = "Player 2";
                 EndRound();
             }
-            else if (player2.Damage >= maxDamage)
+            else if (player2.Health >= maxDamage)
             {
                 //Player 1 wins the round
                 player1RoundWins += 1;
@@ -137,7 +137,7 @@ namespace _2dFightTesting
         {
             player1.X = 100;
             player1.Y = 335;
-            player1.Damage = 0;
+            player1.Health = 0;
             player1.stunTimer = 0;
             player1.knockbackSpeed = 0;
             player1.hitLanded = false;
@@ -147,7 +147,7 @@ namespace _2dFightTesting
 
             player2.X = 600;
             player2.Y = 335;
-            player2.Damage = 0;
+            player2.Health = 0;
             player2.stunTimer = 0;
             player2.knockbackSpeed = 0;
             player2.hitLanded = false;
@@ -290,7 +290,7 @@ namespace _2dFightTesting
                     //Take away health
                     player1.hitLanded = true; //Sets the attack as landed
 
-                    player2.Damage += 10;
+                    player2.Health += 10;
                     player2.stunTimer = 20;
                     player2.currentState = "stunned";
                     player2.currentAttack = null;
@@ -320,7 +320,7 @@ namespace _2dFightTesting
                     //Take away health
                     player2.hitLanded = true; //Sets the attack as landed
 
-                    player1.Damage += 10;
+                    player1.Health += 10;
                     player1.stunTimer = 20;
                     player1.currentState = "stunned";
                     player1.currentAttack = null;
@@ -388,15 +388,29 @@ namespace _2dFightTesting
                     g.DrawRectangle(Pens.Red, player2.GetHitBox());
             }
 
+            // Draw the health bars
+            int healthBarMultiply = 2; // Width of the health bar
+
+
+            Rectangle p1HealthBackdrop = new Rectangle(30, 30, 200, 20);
+            Rectangle p1Health = new Rectangle(30, 30, player1.Health * healthBarMultiply, 20);
+            g.FillRectangle(Brushes.White, p1HealthBackdrop); // Player 1 health backdropa
+            g.FillRectangle(Brushes.Red, p1Health); // Player 1 health bar
+
+            Rectangle p2HealthBackdrop = new Rectangle(this.Width - 30 - 200, 30, 200, 20);
+            Rectangle p2Health = new Rectangle(this.Width - 30 - player2.Health * healthBarMultiply, 30, player2.Health * healthBarMultiply, 20);
+            g.FillRectangle(Brushes.White, p2HealthBackdrop); // Player 2 health backdrop
+            g.FillRectangle(Brushes.Red, p2Health); // Player 2 health bar
+
             //// 1. Setup font and brush to draw text
             //Font healthFont = new Font("Arial", 20, FontStyle.Bold); // font for health
             //Brush healthBrush = Brushes.White; // color of health text
 
             //// 2. Draw Player 1 health (top-left)
-            //e.Graphics.DrawString($"{player1.Name} DMG: " + player1.Damage, healthFont, healthBrush, 10, 10);
+            //e.Graphics.DrawString($"{player1.Name} DMG: " + player1.Health, healthFont, healthBrush, 10, 10);
 
             //// 3. Draw Player 2 health (top-right)
-            //e.Graphics.DrawString($"{player2.Name} DMG: " + player2.Damage, healthFont, healthBrush, this.Width - 180, 10);
+            //e.Graphics.DrawString($"{player2.Name} DMG: " + player2.Health, healthFont, healthBrush, this.Width - 180, 10);
         }
     }
 }
