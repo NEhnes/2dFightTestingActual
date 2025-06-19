@@ -36,17 +36,17 @@ namespace _2dFightTesting
             FallFrames = new Image[2] { Properties.Resources.blue_fall1, Properties.Resources.blue_fall2 };
             DamagedFrames = new Image[4] { Properties.Resources.blue_damaged1, Properties.Resources.blue_damaged2, Properties.Resources.blue_damaged3, Properties.Resources.blue_damaged4 };
 
-            Light2 = new Attack("Light2", 2, 1, 0, 0, 0,
+            Light2 = new Attack("Light2", 2, 1, 0, 15, 0,
                 new List<Rectangle> { new Rectangle(50, 0, 50, 50) }, // Hitboxes
                 new List<Rectangle> { new Rectangle(0, 0, 100, 100) }, // Hurtboxes
                 Attack1Frames.ToList() // frames
             );
-            Heavy2 = new Attack("Heavy2", 2, 1, 0, 0, 0,
+            Heavy2 = new Attack("Heavy2", 2, 1, 0, 20, 0,
                 new List<Rectangle> { new Rectangle(50, 0, 50, 50) }, // Hitboxes
                 new List<Rectangle> { new Rectangle(0, 0, 100, 100) }, // Hurtboxes
                 Attack2Frames.ToList() // frames
             );
-            LightAir = new Attack("LightAir", 1, 1, 0, 0, 0,
+            LightAir = new Attack("LightAir", 1, 1, 30, 0, 0,
                 new List<Rectangle> { new Rectangle(80, 10, 40, 25) }, // Hitboxes
                 new List<Rectangle> { new Rectangle(0, 0, 100, 100) }, // Hurtboxes
                 Attack3Frames.ToList() // frames
