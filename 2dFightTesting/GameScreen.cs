@@ -138,7 +138,7 @@ namespace _2dFightTesting
             player1.X = 100;
             player1.Y = 335;
             player1.Health = 0;
-            player1.stunTimer = 0;
+            player1.stunTicks = 0;
             player1.knockbackSpeed = 0;
             player1.hitLanded = false;
             player1.currentState = "idle";
@@ -148,7 +148,7 @@ namespace _2dFightTesting
             player2.X = 600;
             player2.Y = 335;
             player2.Health = 0;
-            player2.stunTimer = 0;
+            player2.stunTicks = 0;
             player2.knockbackSpeed = 0;
             player2.hitLanded = false;
             player2.currentState = "idle";
@@ -291,7 +291,7 @@ namespace _2dFightTesting
                     player1.hitLanded = true; //Sets the attack as landed
 
                     player2.Health += 10;
-                    player2.stunTimer = 20;
+                    player2.stunTicks = player1.currentAttack.HitstunFrames;
                     player2.currentState = "stunned";
                     player2.currentAttack = null;
                     player2.animationCounter = 0;
@@ -321,7 +321,7 @@ namespace _2dFightTesting
                     player2.hitLanded = true; //Sets the attack as landed
 
                     player1.Health += 10;
-                    player1.stunTimer = 20;
+                    player1.stunTicks = 20;
                     player1.currentState = "stunned";
                     player1.currentAttack = null;
                     player1.animationCounter = 0;

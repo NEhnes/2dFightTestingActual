@@ -22,7 +22,7 @@ namespace _2dFightTesting
         int floorY = 335;
         public bool facingRight = true;
 
-        public int stunTimer = 0; //amount of frames the player is stunned for
+        public int stunTicks = 0; //amount of frames the player is stunned for
         public float knockbackSpeed = 0; //How much the player is pushed back when hit
 
         private Stopwatch jumpBufferStopwatch = new Stopwatch(); // jump buffer
@@ -155,10 +155,10 @@ namespace _2dFightTesting
         public void Move(bool _left, bool _right, bool _up)
         {
             //if player is stunned then no controls should work
-            if (stunTimer > 0)
+            if (stunTicks > 0)
             {
-                stunTimer--;
-                if (stunTimer == 0) currentState = "idle"; // reset state to idle after stun ends
+                stunTicks--;
+                if (stunTicks == 0) currentState = "idle"; // reset state to idle after stun ends
                 //Knockback during stun
                 x += knockbackSpeed; //Move the player by the knockback amonut
 
@@ -421,7 +421,7 @@ namespace _2dFightTesting
         public void SetAttack(string attackName)
         {
             //No moves if stunned
-            if (stunTimer > 0) return;
+            if (stunTicks > 0) return;
 
             // dont set attack if already attacking
             if (currentAttack != null) return;
