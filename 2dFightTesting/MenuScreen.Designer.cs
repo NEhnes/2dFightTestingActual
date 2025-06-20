@@ -53,7 +53,7 @@
             this.howToPlay.Name = "howToPlay";
             this.howToPlay.Size = new System.Drawing.Size(125, 49);
             this.howToPlay.TabIndex = 11;
-            this.howToPlay.Text = "Demo";
+            this.howToPlay.Text = "Credits";
             this.howToPlay.UseVisualStyleBackColor = false;
             this.howToPlay.Click += new System.EventHandler(this.howToPlay_Click);
             // 
