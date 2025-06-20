@@ -13,6 +13,7 @@ namespace _2dFightTesting
 {
     public partial class GameScreen : UserControl
     {
+        #region global_variables_n_objects
         // player 1 object and key states
         RedSamurai player1 = new RedSamurai(100, 100);
         bool aPressed = false;
@@ -40,13 +41,14 @@ namespace _2dFightTesting
         const int roundsToWin = 2;
         bool roundOver = false;
 
-        //Sounds
+        //Soundplayers
         SoundPlayer airAttack = new SoundPlayer(Properties.Resources.attackAir);
         SoundPlayer attack1 = new SoundPlayer(Properties.Resources.attack1);
         SoundPlayer attack2 = new SoundPlayer(Properties.Resources.attack2);
         SoundPlayer jumpSound = new SoundPlayer(Properties.Resources.jump);
         SoundPlayer player1winsSound = new SoundPlayer(Properties.Resources.player1wins);
         SoundPlayer player2winsSound = new SoundPlayer(Properties.Resources.player2wins);
+        #endregion
 
         public GameScreen(String _p1Name, String _p2Name)
         {
@@ -80,6 +82,80 @@ namespace _2dFightTesting
             frameCount++;
 
             Refresh();
+        }
+
+        private void CheckWallCollisons()
+        {
+            const int playerWidth = 64;          // Width of player sprite
+
+            if (player1.X <= 0) player1.X = 0;  // Stop player at left wall
+            if (player1.X + playerWidth >= this.Width) player1.X = this.Width - playerWidth;  // Stop player at right wall
+
+            if (player2.X <= 0) player2.X = 0;  // Stop player at left wall
+            if (player2.X + playerWidth >= this.Width) player2.X = this.Width - playerWidth;  // Stop player at right wall
+        }
+
+        private void CheckAttackLanded()
+        {
+            //check if player 1 hit player 2
+            if (player1.currentAttack != null && !player1.hitLanded)
+            {
+                Rectangle hitbox = player1.GetHitBox();
+
+
+                //Get the area of where player two can be hit
+                Rectangle hurtbox = player2.GetHurtBox();
+
+                //Check if the hitbox overlaps the hurtbox to check for collison
+                if (hitbox.IntersectsWith(hurtbox))
+                {
+                    //Take away health
+                    player1.hitLanded = true; //Sets the attack as landed
+
+                    player2.Health -= player1.currentAttack.Damage;
+                    player2.stunTicks = player1.currentAttack.HitstunFrames;
+                    player2.currentState = "stunned";
+                    player2.currentAttack = null;
+                    player2.animationCounter = 0;
+
+                    //Add Knockback away from the attacker
+                    player2.knockbackSpeed = (player1.facingRight) ? 15 : -15;
+                    player2.facingRight = !player1.facingRight;
+
+                    //Screen shake on collision
+                    ScreenShake(10, 50);
+                }
+            }
+
+            //check if the player 2 is attacking
+            if (player2.currentAttack != null && !player2.hitLanded)
+            {
+                //Gets the hit box of where the player is attacking
+                Rectangle hitbox = player2.GetHitBox();
+
+                //Get the area of where player one can be hit
+                Rectangle hurtbox = player1.GetHurtBox();
+
+                //Check if the hitbox overlaps the hurtbox to check for collison
+                if (hitbox.IntersectsWith(hurtbox))
+                {
+                    //Take away health
+                    player2.hitLanded = true; //Sets the attack as landed
+
+                    player1.Health -= player2.currentAttack.Damage;
+                    player1.stunTicks = player2.currentAttack.HitstunFrames;
+                    player1.currentState = "stunned";
+                    player1.currentAttack = null;
+                    player1.animationCounter = 0;
+
+                    //Add Knockback away from the attacker
+                    player1.knockbackSpeed = (player2.facingRight) ? 15 : -15;
+                    player1.facingRight = !player2.facingRight;
+
+                    //Screen shake on collision
+                    ScreenShake(10, 50);
+                }
+            }
         }
 
         private void CheckRoundOver()
@@ -160,6 +236,27 @@ namespace _2dFightTesting
             frameCount = 0;
         }
 
+        private async void ScreenShake(int intensity = 5, int duration = 100)
+        {
+            var originalLocation = this.Location;
+            Random randgen = new Random();
+
+            int elapsed = 0;
+            int interval = 16; // ~60 FPS
+
+            while (elapsed < duration)
+            {
+                int offsetX = randgen.Next(-intensity, intensity + 1);
+                int offsetY = randgen.Next(-intensity, intensity + 1);
+                this.Location = new Point(originalLocation.X + offsetX, originalLocation.Y + offsetY);
+
+                await Task.Delay(interval);
+                elapsed += interval;
+            }
+
+            this.Location = originalLocation; // reset position
+        }
+
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
@@ -182,8 +279,8 @@ namespace _2dFightTesting
                         player1.SetAttack("light2");
                         attack1.Play();
                     }
-                    else 
-                    { 
+                    else
+                    {
                         player1.SetAttack("lightAir");
                         airAttack.Play();
                     }
@@ -271,101 +368,6 @@ namespace _2dFightTesting
                 default:
                     break;
             }
-        }
-
-        private void CheckAttackLanded()
-        {
-            //check if player 1 hit player 2
-            if (player1.currentAttack != null && !player1.hitLanded)
-            {
-                Rectangle hitbox = player1.GetHitBox();
-                
-
-                //Get the area of where player two can be hit
-                Rectangle hurtbox = player2.GetHurtBox();
-
-                //Check if the hitbox overlaps the hurtbox to check for collison
-                if (hitbox.IntersectsWith(hurtbox))
-                {
-                    //Take away health
-                    player1.hitLanded = true; //Sets the attack as landed
-
-                    player2.Health -= player1.currentAttack.Damage;
-                    player2.stunTicks = player1.currentAttack.HitstunFrames;
-                    player2.currentState = "stunned";
-                    player2.currentAttack = null;
-                    player2.animationCounter = 0;
-
-                    //Add Knockback away from the attacker
-                    player2.knockbackSpeed = (player1.facingRight) ? 15 : -15;
-                    player2.facingRight = !player1.facingRight;
-
-                    //Screen shake on collision
-                    ScreenShake(10, 50);
-                }
-            }
-
-            //check if the player 2 is attacking
-            if (player2.currentAttack != null && !player2.hitLanded)
-            {
-                //Gets the hit box of where the player is attacking
-                Rectangle hitbox = player2.GetHitBox();
-
-                //Get the area of where player one can be hit
-                Rectangle hurtbox = player1.GetHurtBox();
-
-                //Check if the hitbox overlaps the hurtbox to check for collison
-                if (hitbox.IntersectsWith(hurtbox))
-                {
-                    //Take away health
-                    player2.hitLanded = true; //Sets the attack as landed
-
-                    player1.Health -= player2.currentAttack.Damage;
-                    player1.stunTicks = player2.currentAttack.HitstunFrames;
-                    player1.currentState = "stunned";
-                    player1.currentAttack = null;
-                    player1.animationCounter = 0;
-
-                    //Add Knockback away from the attacker
-                    player1.knockbackSpeed = (player2.facingRight) ? 15 : -15;
-                    player1.facingRight = !player2.facingRight;
-
-                    //Screen shake on collision
-                    ScreenShake(10, 50);
-                }
-            }
-        }
-
-        private void CheckWallCollisons()
-        {
-            const int playerWidth = 64;          // Width of player sprite
-
-            if (player1.X <= 0) player1.X = 0;  // Stop player at left wall
-            if (player1.X + playerWidth >= this.Width) player1.X = this.Width - playerWidth;  // Stop player at right wall
-
-            if (player2.X <= 0) player2.X = 0;  // Stop player at left wall
-            if (player2.X + playerWidth >= this.Width) player2.X = this.Width - playerWidth;  // Stop player at right wall
-        }
-
-        private async void ScreenShake(int intensity = 5, int duration = 100)
-        {
-            var originalLocation = this.Location;
-            Random randgen = new Random();
-
-            int elapsed = 0;
-            int interval = 16; // ~60 FPS
-
-            while (elapsed < duration)
-            {
-                int offsetX = randgen.Next(-intensity, intensity + 1);
-                int offsetY = randgen.Next(-intensity, intensity + 1);
-                this.Location = new Point(originalLocation.X + offsetX, originalLocation.Y + offsetY);
-
-                await Task.Delay(interval);
-                elapsed += interval;
-            }
-
-            this.Location = originalLocation; // reset position
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)

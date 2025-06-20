@@ -28,13 +28,15 @@ namespace _2dFightTesting
             InitializeComponent();
             LoadStats();
 
+            // Display players and corresponding wins
             outputLabel.Text = "Leader Board\n\n";
-
             foreach (Player p in players)
             {
                 outputLabel.Text += $"{p.name} : {p.wins} wins\n";
             }
         }
+        
+        // Load players list with data from XML
         private void LoadStats()
         {
             XmlReader reader = XmlReader.Create("Resources/WinRecords.xml", null);
@@ -51,37 +53,11 @@ namespace _2dFightTesting
                     players.Add(p);
                 }
             }
-            Console.WriteLine("LeadeBoard_LoadStats(): --------------");
-            foreach (Player p in players)
-            {
-                Console.WriteLine("Player: " + p.name + " Wins: " + p.wins);
-            }
-            Console.WriteLine("-----------------------------");
             reader.Close();
         }
 
-        private void OverwriteXml()
+        private void LeaderBoardScreen_FormClosed(object sender, FormClosedEventArgs e) // not needed anymore
         {
-            XmlWriter writer = XmlWriter.Create("Resources/WinRecords.xml", null);
-
-            writer.WriteStartDocument();
-            writer.WriteStartElement("Players");
-            foreach (Player p in players)
-            {
-                writer.WriteStartElement("Player");
-                writer.WriteAttributeString("name", p.name);
-                writer.WriteAttributeString("wins", p.wins);
-                writer.WriteEndElement();
-            }
-            writer.WriteEndElement();
-            writer.WriteEndDocument();
-
-            writer.Close();
-        }
-
-        private void LeaderBoardScreen_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            OverwriteXml();
         }
 
         private void returnButton_Click(object sender, EventArgs e)

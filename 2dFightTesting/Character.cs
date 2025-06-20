@@ -403,8 +403,7 @@ namespace _2dFightTesting
             if (currentAttack == null) return new Rectangle(0, 0, 0, 0);
 
             // hitbox for the current frame of the animation
-            int frameIndex = 0; // TEMPORARY FIX BCZ LIST IS ONLY ONE ELEMENT LONG
-            Rectangle attackBox = currentAttack.Hitboxes[frameIndex];
+            Rectangle attackBox = currentAttack.Hitboxes[0];
 
             // if the character is facing left, we need to flip the hitbox
             if (!facingRight)
@@ -420,7 +419,7 @@ namespace _2dFightTesting
 
         public void SetAttack(string attackName)
         {
-            //No moves if stunned
+            // no moves if stunned
             if (stunTicks > 0) return;
 
             // dont set attack if already attacking
@@ -434,12 +433,10 @@ namespace _2dFightTesting
                     case "light2":
                         currentAttack = Light2;
                         currentState = "attack1";
-                        Console.WriteLine("Light2 attack initiated");
                         break;
                     case "heavy2":
                         currentAttack = Heavy2;
                         currentState = "attack2";
-                        Console.WriteLine("Heavy2 attack initiated");
                         break;
                     default:
                         return; // invalid attack
@@ -453,7 +450,6 @@ namespace _2dFightTesting
                     case "lightAir":
                         currentAttack = LightAir;
                         currentState = "lightAir";
-                        Console.WriteLine("Light air attack initiated");
                         break;
                     default:
                         return;
@@ -462,10 +458,8 @@ namespace _2dFightTesting
             }
 
             xSpeed = 0; // reset speeds when changing moves
-            ySpeed = 0;
 
             animationCounter = 0; // // reset animation frame counter
-
         }
     }
 }

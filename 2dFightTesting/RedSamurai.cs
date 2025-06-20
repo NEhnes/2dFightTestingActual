@@ -12,11 +12,10 @@ namespace _2dFightTesting
 {
     public class RedSamurai : Character 
     {
-        // XML READ HITBOXES AND HURTBOXES
-        // tons of data which takes up code space
         public RedSamurai(float _x, float _y) : base(_x, _y)
         {
-            // subclass specific details below
+            // subclass specific properties are set below
+
             Name = "Red Samurai";
 
             Health = 100;
@@ -29,7 +28,7 @@ namespace _2dFightTesting
                                             Properties.Resources.run7,  Properties.Resources.run8 };
             Attack1Frames = new Image[6] { Properties.Resources.attack1_1, Properties.Resources.attack1_2 , Properties.Resources.attack1_3 ,
                                             Properties.Resources.attack1_4, Properties.Resources.attack1_5, Properties.Resources.attack1_6 };
-            Attack2Frames = new Image[6] { Properties.Resources.attack2_1, Properties.Resources.attack2_2 , Properties.Resources.attack2_3 ,
+            Attack2Frames = new Image[6] { Properties.Resources.attack2_1, Properties.Resources.attack2_2, Properties.Resources.attack2_3 ,
                                             Properties.Resources.attack2_4, Properties.Resources.attack2_5, Properties.Resources.attack2_6 };
             Attack3Frames = new Image[3] { Properties.Resources.light_air1, Properties.Resources.light_air3, Properties.Resources.light_air4 };
 
@@ -54,6 +53,7 @@ namespace _2dFightTesting
             );
         }
 
+        // GetHurtBox method returns the hurtbox for each frame based on character & current state/attack
         public override Rectangle GetHurtBox()
         {
             if (currentAttack != null)
@@ -73,7 +73,7 @@ namespace _2dFightTesting
 
             }
 
-            // idle/running/jumping/falling hurtbox
+            // default idle/running/jumping/falling hurtbox
             if (facingRight) return new Rectangle((int)X + 22, (int)Y + 5, 30, 59);
             else return new Rectangle((int)X + 10, (int)Y + 5, 30, 59);
         }
