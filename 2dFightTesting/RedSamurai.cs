@@ -19,7 +19,7 @@ namespace _2dFightTesting
             // subclass specific details below
             Name = "Red Samurai";
 
-            Health = 0;
+            Health = 100;
 
             IdleFrames = new Image[8] { Properties.Resources.idle1, Properties.Resources.idle2 , Properties.Resources.idle3 ,
                                             Properties.Resources.idle4, Properties.Resources.idle5, Properties.Resources.idle6,
@@ -37,17 +37,17 @@ namespace _2dFightTesting
             FallFrames = new Image[2] { Properties.Resources.fall1, Properties.Resources.fall2 };
             DamagedFrames = new Image[4] { Properties.Resources.damaged1, Properties.Resources.damaged2, Properties.Resources.damaged3, Properties.Resources.damaged4 };
 
-            Light2 = new Attack("Light2", 4, 2, 0, 25, 0,
+            Light2 = new Attack("Light2", 4, 2, 12, 25, 0,
                 new List<Rectangle> { new Rectangle(50, 0, 50, 50) }, // Hitboxes
                 new List<Rectangle> { new Rectangle(0, 0, 100, 100) }, // Hurtboxes
                 Attack1Frames.ToList() // frames
             );
-            Heavy2 = new Attack("Heavy2", 4, 2, 0, 20, 0,
+            Heavy2 = new Attack("Heavy2", 4, 2, 15, 20, 0,
                 new List<Rectangle> { new Rectangle(50, 0, 50, 50) }, // Hitboxes
                 new List<Rectangle> { new Rectangle(0, 0, 100, 100) }, // Hurtboxes
                 Attack2Frames.ToList() // frames
             );
-            LightAir = new Attack("LightAir", 1, 1, 0, 30, 0,
+            LightAir = new Attack("LightAir", 1, 1, 10, 30, 0,
                 new List<Rectangle> { new Rectangle(80, 10, 40, 25) }, // Hitboxes
                 new List<Rectangle> { new Rectangle(0, 0, 100, 100) }, // Hurtboxes
                 Attack3Frames.ToList() // frames

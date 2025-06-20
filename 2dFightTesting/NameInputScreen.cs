@@ -26,6 +26,30 @@ namespace _2dFightTesting
         {
             // Validate player names
 
+            if (string.IsNullOrWhiteSpace(player1NameTextBox.Text) || string.IsNullOrWhiteSpace(player2NameTextBox.Text))
+            {
+                MessageBox.Show("Please enter names for both players.");
+                return;
+            }
+
+            if (player1NameTextBox.Text.Length > 8 || player2NameTextBox.Text.Length > 8)
+            {
+                MessageBox.Show("Names must be 8 characters or less.");
+                return;
+            }
+
+            if (player1NameTextBox.Text.Length < 2 || player2NameTextBox.Text.Length < 2)
+            {
+                MessageBox.Show("Names must be at least 2 characters long.");
+                return;
+            }
+
+            if (player1NameTextBox.Text == player2NameTextBox.Text)
+            {
+                MessageBox.Show("Players must have different names.");
+                return;
+            }
+
             Form1.ChangeScreen(this, new GameScreen(player1NameTextBox.Text, player2NameTextBox.Text));
             chooseYourCharacter.Stop();
         }
