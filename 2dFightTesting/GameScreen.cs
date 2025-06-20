@@ -13,31 +13,32 @@ namespace _2dFightTesting
 {
     public partial class GameScreen : UserControl
     {
+        // player 1 object and key states
         RedSamurai player1 = new RedSamurai(100, 100);
-
         bool aPressed = false;
         bool dPressed = false;
         bool wPressed = false;
         bool tabPressed = false;
 
+        // player 2 object and key states
         BlueSamurai player2 = new BlueSamurai(600, 100);
         bool leftPressed = false;
         bool rightPressed = false;
         bool upPressed = false;
 
+        // Game state variables
         int frameCount = 0;
+        bool debugMode = false;  // press escape to toggle hitbox/hurtbox visibility
 
-        bool debugMode = true;
         public static bool player1wins;
         public static bool player2wins;
 
-        //Variables for round system
+        // Variables for round system
         int player1RoundWins = 0;
         int player2RoundWins = 0;
         const int maxDamage = 100;           
         const int roundsToWin = 2;
         bool roundOver = false;
-        string roundWinner = "";
 
         //Sounds
         SoundPlayer airAttack = new SoundPlayer(Properties.Resources.attackAir);
@@ -51,7 +52,7 @@ namespace _2dFightTesting
         {
             InitializeComponent();
             gameTimer.Enabled = true;
-            roundEndTimer.Interval = 2000;
+            roundEndTimer.Interval = 2000;  // timer for each round
 
             player1.Name = _p1Name;
             player2.Name = _p2Name;
@@ -67,6 +68,7 @@ namespace _2dFightTesting
             player1.Move(aPressed, dPressed, wPressed);
             player2.Move(leftPressed, rightPressed, upPressed);
 
+            // keep players within bounds
             CheckWallCollisons();
 
             //Checks for the collision between hit/hurt boxes
@@ -86,14 +88,12 @@ namespace _2dFightTesting
             {
                 //Player 2 wins the round
                 player2RoundWins += 1;
-                roundWinner = "Player 2";
                 EndRound();
             }
             else if (player2.Health <= 0)
             {
                 //Player 1 wins the round
                 player1RoundWins += 1;
-                roundWinner = "Player 1";
                 EndRound();
             }
 
@@ -137,7 +137,7 @@ namespace _2dFightTesting
         {
             player1.X = 100;
             player1.Y = 335;
-            player1.Health = 0;
+            player1.Health = 100;
             player1.stunTicks = 0;
             player1.knockbackSpeed = 0;
             player1.hitLanded = false;
@@ -147,7 +147,7 @@ namespace _2dFightTesting
 
             player2.X = 600;
             player2.Y = 335;
-            player2.Health = 0;
+            player2.Health = 100;
             player2.stunTicks = 0;
             player2.knockbackSpeed = 0;
             player2.hitLanded = false;
@@ -157,9 +157,9 @@ namespace _2dFightTesting
 
             // Reset round state
             roundOver = false;
-            roundWinner = "";
             frameCount = 0;
         }
+
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
